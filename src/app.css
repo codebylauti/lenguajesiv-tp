@@ -1,0 +1,47 @@
+body {
+  margin: 0;
+}
+
+#root {
+  height: 100dvh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+header {
+  height: min-content;
+  background-color: darkblue;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  text-transform: uppercase;
+}
+
+.navbar {
+  width: 100%;
+  justify-content: space-around;
+  display: flex;
+  text-decoration: none;
+}
+
+.navbar * {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.navbar *.active {
+  color: blueviolet; 
+}
+
+footer {
+  padding: 10px 10px 0px 10px;
+  height: min-content;
+  background-color: darkblue;
+  color: #ffffff;
+}
+
+main {
+  padding: 20px;
+}
