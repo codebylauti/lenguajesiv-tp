@@ -12,7 +12,7 @@ import Contact from "./pages/Contact.jsx";
 function App() {
   return (
     <div id="app" className="min-h-screen w-full grid grid-rows-[auto_1fr_auto] bg-green-primary text-detail-jade ">
-      <BrowserRouter>
+      <BrowserRouter basename={import.meta.env.BASE_URL.replace(/\/$/, '') || '/'}>
         <Header/>
 
         <main>
