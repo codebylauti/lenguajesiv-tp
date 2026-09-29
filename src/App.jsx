@@ -11,19 +11,23 @@ import Contact from "./pages/Contact.jsx";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Header/>
-      <main>
-        <Routes>
-          <Route path="/" element={<Home/>} />
-          <Route path="/Inicio" element={<Home/>} />
-          <Route path="/Servicios" element={<Services/>} />
-          <Route path="/Contacto" element={<Contact/>} />
-          <Route path="*" element={<h1>404 page not found</h1>} />
-        </Routes>
-      </main>
-      <Footer/>
-    </BrowserRouter>
+    <div id="app" className="min-h-screen w-full grid grid-rows-[auto_1fr_auto] bg-green-primary text-detail-jade ">
+      <BrowserRouter>
+        <Header/>
+
+        <main>
+          <Routes>
+            <Route path="/" element={<Home/>} />
+            <Route path="/Inicio" element={<Home/>} />
+            <Route path="/Servicios" element={<Services/>} />
+            <Route path="/Contacto" element={<Contact/>} />
+            <Route path="*" element={<h1>404 page not found</h1>} />
+          </Routes>
+        </main>
+
+        <Footer/>
+      </BrowserRouter>
+    </div>
   )
 }
 

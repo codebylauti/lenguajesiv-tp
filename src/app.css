@@ -1,49 +1,14 @@
 @import "tailwindcss";
 
+@theme {
+  --color-green-primary: #0b1412;
+  --color-green-cards: #12221e;
+  --color-text-primary: #e3ebe8;
+  --color-detail-jade: #2bb397;
+  --color-detail-gold: #d4af37;
+}
+
 body {
-  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-#root {
-  height: 100dvh;
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-}
-
-header {
-  height: min-content;
-  background-color: darkblue;
-  color: #ffffff;
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  text-transform: uppercase;
-}
-
-.navbar {
-  width: 100%;
-  justify-content: space-around;
-  display: flex;
-  text-decoration: none;
-}
-
-.navbar * {
-  color: #ffffff;
-  text-decoration: none;
-  font-size: 20px;
-}
-
-.navbar *.active {
-  color: blueviolet; 
-}
-
-footer {
-  padding: 10px 10px 0px 10px;
-  height: min-content;
-  background-color: darkblue;
-  color: #ffffff;
-}
-
-main {
-  padding: 20px;
-}
