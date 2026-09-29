@@ -2,7 +2,7 @@ import { NavLink } from 'react-router';
 
 function Navbar () {
   return (
-    <nav className='navbar'>
+    <nav className="navbar flex justify-around">
       <NavLink 
         to="/Inicio"
       >
