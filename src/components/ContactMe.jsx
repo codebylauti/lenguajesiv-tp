@@ -74,8 +74,6 @@ function ContactMe () {
           id="user_name"
           type="text"
           name="user_name"
-          required
-          minLength={3}
           aria-invalid={Boolean(errors.user_name)}
           onChange={handleChange}
           placeholder="Tu nombre"
@@ -92,8 +90,6 @@ function ContactMe () {
           id="user_email"
           type="email"
           name="user_email"
-          required
-          aria-invalid={Boolean(errors.user_email)}
           onChange={handleChange}
           placeholder="tu@email.com"
           className={inputStyle}
@@ -108,8 +104,6 @@ function ContactMe () {
         <textarea
           id="message"
           name="message"
-          required
-          minLength={3}
           rows="5"
           aria-invalid={Boolean(errors.message)}
           onChange={handleChange}
