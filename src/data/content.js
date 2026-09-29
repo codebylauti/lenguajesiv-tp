@@ -1,6 +1,6 @@
 const writeups = {
   label: "Ver todos mis writeups",
-  url: "https://github.com/",
+  url: "https://github.com/codebylauti/ejptv2-journey"
 }
 
 const home = {
