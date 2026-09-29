@@ -21,7 +21,11 @@ function App() {
             <Route path="/Inicio" element={<Home/>} />
             <Route path="/Servicios" element={<Services/>} />
             <Route path="/Contacto" element={<Contact/>} />
-            <Route path="*" element={<h1>404 page not found</h1>} />
+            <Route path="*" element={
+              <div className="w-full h-full flex justify-center items-center text-5xl text-detail-jade">
+                <h1> <span className="text-red-900">404</span> page not found</h1>
+              </div>
+            } />
           </Routes>
         </main>
 
