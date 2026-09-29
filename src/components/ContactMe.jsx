@@ -13,7 +13,7 @@ function ContactMe () {
     setStatus("sending");
 
     emailjs
-      .sendForm(import.meta.env.VITE_SERVICE_ID, import.meta.env.VITE_TEMPLATE_ID, form.current, {
+      .sendForm('service_7qce4rl', 'template_kpn1tod', form.current, {
         publicKey: import.meta.env.VITE_PUBLIC_KEY,
       })
       .then(
