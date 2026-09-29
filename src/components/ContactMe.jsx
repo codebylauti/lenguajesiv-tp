@@ -4,12 +4,42 @@ import emailjs from '@emailjs/browser';
 const inputStyle =
   "w-full rounded-md border border-detail-jade/40 bg-green-primary px-4 py-2.5 text-text-primary placeholder:text-text-primary/40 outline-none transition focus:border-detail-jade focus:ring-1 focus:ring-detail-jade";
 
+const errorStyle = "text-sm text-red-400";
+
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+const validate = ({ user_name, user_email, message }) => {
+  const errors = {};
+  const name = user_name.trim();
+  const email = user_email.trim();
+  const body = message.trim();
+
+  if (name.length < 3) errors.user_name = "El nombre debe tener al menos 3 caracteres.";
+  if (!email) errors.user_email = "Ingresá tu email.";
+  else if (!EMAIL_REGEX.test(email)) errors.user_email = "Ingresá un email válido.";
+  if (body.length < 3) errors.message = "El mensaje debe tener al menos 3 caracteres.";
+
+  return errors;
+};
+
 function ContactMe () {
   const form = useRef();
   const [status, setStatus] = useState("idle");
+  const [errors, setErrors] = useState({});
+
+  const handleChange = (e) => {
+    const { name } = e.target;
+    setErrors((prev) => (prev[name] ? { ...prev, [name]: undefined } : prev));
+  };
 
   const sendEmail = (e) => {
     e.preventDefault();
+
+    const data = Object.fromEntries(new FormData(form.current));
+    const nextErrors = validate(data);
+    setErrors(nextErrors);
+    if (Object.values(nextErrors).some(Boolean)) return;
+
     setStatus("sending");
 
     emailjs
@@ -19,6 +49,7 @@ function ContactMe () {
       .then(
         () => {
           setStatus("sent");
+          setErrors({});
           form.current.reset();
         },
         (error) => {
@@ -32,13 +63,25 @@ function ContactMe () {
     <form
       ref={form}
       onSubmit={sendEmail}
+      noValidate
       className="flex w-full flex-col gap-5 rounded-lg bg-green-cards p-6 sm:p-8"
     >
       <div className="flex flex-col gap-1.5">
         <label htmlFor="user_name" className="text-sm font-semibold uppercase tracking-wide text-detail-jade">
           Nombre completo
         </label>
-        <input id="user_name" type="text" name="user_name" required placeholder="Tu nombre" className={inputStyle} />
+        <input
+          id="user_name"
+          type="text"
+          name="user_name"
+          required
+          minLength={3}
+          aria-invalid={Boolean(errors.user_name)}
+          onChange={handleChange}
+          placeholder="Tu nombre"
+          className={inputStyle}
+        />
+        {errors.user_name && <p className={errorStyle}>{errors.user_name}</p>}
       </div>
 
       <div className="flex flex-col gap-1.5">
@@ -50,9 +93,12 @@ function ContactMe () {
           type="email"
           name="user_email"
           required
+          aria-invalid={Boolean(errors.user_email)}
+          onChange={handleChange}
           placeholder="tu@email.com"
           className={inputStyle}
         />
+        {errors.user_email && <p className={errorStyle}>{errors.user_email}</p>}
       </div>
 
       <div className="flex flex-col gap-1.5">
@@ -63,10 +109,14 @@ function ContactMe () {
           id="message"
           name="message"
           required
+          minLength={3}
           rows="5"
+          aria-invalid={Boolean(errors.message)}
+          onChange={handleChange}
           placeholder="Contame en qué te puedo ayudar"
           className={`${inputStyle} resize-y`}
         />
+        {errors.message && <p className={errorStyle}>{errors.message}</p>}
       </div>
 
       <button
