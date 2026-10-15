@@ -1,4 +1,5 @@
 import ContactMe from '../components/ContactMe.jsx'
+import Map from '../components/Map.jsx'
 import { home } from '../data/content.js'
 
 function Contact () {
@@ -14,25 +15,30 @@ function Contact () {
         </p>
       </header>
 
-      <div className="grid gap-6 sm:grid-cols-[1fr_260px] items-start">
-        <ContactMe />
+      <section classname="grid">
+        <div className="grid gap-6 sm:grid-cols-[1fr_260px] items-start">
+          <ContactMe />
 
-        <aside className="flex flex-col gap-4 rounded-lg border border-detail-jade/40 p-6">
-          <h2 className="text-lg font-semibold text-detail-jade">También podés encontrarme en</h2>
-          <ul className="flex flex-col gap-2">
-            <li>
-              <a
-                href={writeups.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-detail-gold underline-offset-4 transition hover:underline"
-              >
-                {writeups.label}
-              </a>
-            </li>
-          </ul>
-        </aside>
-      </div>
+          <aside className="flex flex-col gap-4 rounded-lg border border-detail-jade/40 p-6">
+            <h2 className="text-lg font-semibold text-detail-jade">También podés encontrarme en</h2>
+            <ul className="flex flex-col gap-2">
+              <li>
+
+                <a
+                  href="https://maps.google.com/?cid=7627626631759544951"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-detail-gold underline-offset-4 transition hover:underline"
+                >
+                  Universidad Católica de Salta
+                </a>
+              </li>
+            </ul>
+
+            <Map />
+          </aside>
+        </div>
+      </section>
     </section>
   )
 }
