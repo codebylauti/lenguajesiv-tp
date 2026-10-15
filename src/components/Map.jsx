@@ -5,9 +5,9 @@ function Map() {
   const position = [-24.741670786173028, -65.39372853282484];
   return (
     <MapContainer 
-      center={position} 
-      zoom={13} 
-      style={{ height: '400px', width: '100%' }}
+      center={position}
+      zoom={15} 
+      style={{ height: '200px', width: '100%' }}
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -15,7 +15,7 @@ function Map() {
       />
       <Marker position={position}>
         <Popup>
-          Aquí estamos en Salta.
+          Universidad Católica de Salta
         </Popup>
       </Marker>
     </MapContainer>
