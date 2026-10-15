@@ -13,7 +13,7 @@ function Contact () {
         </p>
       </header>
 
-      <section classname="grid">
+      <section className="grid">
         <div className="grid gap-6 sm:grid-cols-[1fr_260px] items-start">
           <ContactMe />
 
