@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react"
-import opencveClient from "../api/opencveClient"
+import cvesData from "../data/cves.json"
 
 const NIST_URL = "https://nvd.nist.gov/vuln/detail/"
 
@@ -13,67 +12,24 @@ function formatDate (isoDate) {
 }
 
 function CveList () {
-  const [vulnerabilities, setVulnerabilities] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
-
-  useEffect(() => {
-    let cancelled = false
-
-    const fetchData = async () => {
-      try {
-        setLoading(true)
-        const response = await opencveClient.get("/cves", {
-          params: { page_size: 10 },
-        })
-        if (!cancelled) setVulnerabilities(response.data.results || [])
-      } catch (err) {
-        console.error("Error connecting to OpenCVE:", err)
-        if (!cancelled) {
-          setError(
-            "No se pudieron cargar las CVE. Fijate el token de OpenCVE en el .env y la conexión e intenta de nuevo."
-          )
-        }
-      } finally {
-        if (!cancelled) setLoading(false)
-      }
-    }
-
-    fetchData()
-    return () => {
-      cancelled = true
-    }
-  }, [])
+  const vulnerabilities = cvesData.results ?? []
 
   return (
     <div className="flex flex-col gap-6">
       <div className="flex flex-col gap-2">
         <h2 className="text-2xl font-semibold text-detail-jade">Vulnerabilidades recientes</h2>
         <p className="leading-relaxed">
-          Lo último del catálogo CVE, sincronizado en vivo desde OpenCVE.
+          Lo último del catálogo CVE, actualizado en cada deploy desde OpenCVE.
         </p>
       </div>
 
-      {loading && (
-        <div className="flex h-40 flex-col items-center justify-center gap-4">
-          <div className="h-10 w-10 animate-spin rounded-full border-4 border-detail-jade border-t-transparent" />
-          <p className="text-sm text-detail-gold">Cargando CVEs…</p>
-        </div>
-      )}
-
-      {!loading && error && (
-        <div className="rounded-lg border border-detail-gold/40 bg-green-cards p-6">
-          <p className="text-sm text-detail-gold">{error}</p>
-        </div>
-      )}
-
-      {!loading && !error && vulnerabilities.length === 0 && (
+      {vulnerabilities.length === 0 && (
         <div className="rounded-lg bg-green-cards p-6">
           <p className="text-sm">Todavía no hay CVEs para mostrar.</p>
         </div>
       )}
 
-      {!loading && !error && vulnerabilities.length > 0 && (
+      {vulnerabilities.length > 0 && (
         <ul className="flex flex-col gap-4">
           {vulnerabilities.map((cve) => (
             <li
