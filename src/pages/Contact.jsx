@@ -1,9 +1,7 @@
 import ContactMe from '../components/ContactMe.jsx'
 import Map from '../components/Map.jsx'
-import { home } from '../data/content.js'
 
 function Contact () {
-  const { focus, writeups } = home
 
   return (
     <section className="mx-auto flex w-full max-w-4xl flex-col gap-10 px-6 py-16">
