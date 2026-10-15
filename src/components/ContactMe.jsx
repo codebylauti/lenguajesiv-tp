@@ -43,7 +43,7 @@ function ContactMe () {
     setStatus("sending");
 
     emailjs
-      .sendForm('service_7qce4rl', 'template_kpn1tod', form.current, {
+      .sendForm('service_emjjgho', 'template_kpn1tod', form.current, {
         publicKey: import.meta.env.VITE_PUBLIC_KEY,
       })
       .then(
