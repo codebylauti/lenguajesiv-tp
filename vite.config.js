@@ -17,5 +17,19 @@ export default defineConfig({
       }
     }
   ],
-  base: '/lenguajesiv-tp/'
+  base: '/lenguajesiv-tp/',
+  server: {
+    proxy: {
+      '/api': {
+        target: 'https://app.opencve.io',
+        changeOrigin: true,
+        secure: true,
+        followRedirects: true,
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+          'Accept': 'application/json',
+        }
+      }
+    }
+  }
 })

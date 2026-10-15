@@ -36,6 +36,7 @@ jobs:
         run: npm run build
         env:
           VITE_PUBLIC_KEY: ${{ secrets.VITE_PUBLIC_KEY }}
+          VITE_OPENCVE_TOKEN: ${{ secrets.VITE_OPENCVE_TOKEN }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
