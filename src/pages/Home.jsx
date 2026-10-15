@@ -1,5 +1,6 @@
 import { home } from "../data/content.js";
 import CveList from "../components/CveList.jsx";
+import HackedFeed from "../components/HackedFeed.jsx";
 
 function Home () {
   const { hero, focus, writeups } = home
@@ -43,6 +44,10 @@ function Home () {
 
       <div className="border-t border-detail-gold/20 pt-12">
         <CveList />
+      </div>
+
+      <div className="border-t border-detail-gold/20 pt-12">
+        <HackedFeed />
       </div>
     </section>
   )
